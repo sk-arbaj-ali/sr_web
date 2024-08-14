@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block content %} 
+<h2 class="text-center mt-3"><i class="bi bi-card-checklist mx-2"></i>Update the topic</h2>
+<div class="container">
+    <div class="container-sm">
+        <form method="POST">
+            {% csrf_token %}
+            {% for item in form %}
+                <div class="mb-3 col-sm-6 mx-auto">
+                    <label for="{{item.id_for_label}}" class="form-label">{{item.label}}</label>
+                    {{item}}
+                    {{item.errors}}
+                </div>
+            {% endfor %}
+            <div class="mb-3 col-sm-6 d-flex justify-content-center mx-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

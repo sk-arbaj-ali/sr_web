@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+{% if objs %}
+<h2 class="text-center mt-3"><i class="bi bi-card-checklist mx-2"></i>All the topics</h2>
+<table class="table table-striped w-75 mx-auto">
+    <thead>
+      <tr class="text-center">
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Subject</th>
+        <th scope="col">Topics</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">First Revision</th>
+        <th scope="col">Second Revision</th>
+        <th scope="col">Third Revision</th>
+        <th scope="col">Fourth Revision</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in objs %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.topics}}</td>
+            <td>{{item.start_date}}</td>
+            <td>{{item.first_revision}}</td>
+            <td>{{item.second_revision}}</td>
+            <td>{{item.third_revision}}</td>
+            <td>{{item.fourth_revision}}</td>
+            <td class="d-flex justify-content-around">
+                <form action="{% url 'update' item.id %}" class="d-flex flex-row align-items-center" method="POST">
+                  {% csrf_token %}
+                  <div>
+                      <i class="bi bi-pencil-square"></i>
+                      <input type="Submit" class="btn btn-primary" id="editBtn" name="editBtn" value="Edit" />
+                  </div>
+                </form>
+                <form action="{% url 'delete' item.id %}" class="d-flex flex-row align-items-center" method="POST">
+                  {% csrf_token %}
+                  <div>
+                      <i class="bi bi-trash"></i>
+                      <input type="Submit" class="btn btn-danger" id="deleteBtn" name="deleteBtn" value="Delete" />
+                  </div>
+                </form>
+            </td>
+        </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h2 class="text-center mt-3"><i class="bi bi-card-checklist mx-2"></i>No topic available. Add some now.</h2>
+{% endif %}
+{% endblock content %}

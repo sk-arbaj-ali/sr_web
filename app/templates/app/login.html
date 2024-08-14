@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h2 class="text-center mt-3"><i class="bi bi-person-fill-lock mx-2"></i>SignIn</h2>
+    <div class="container my-3">
+        <form method="POST">
+            {%csrf_token%}
+            <div class="mb-3 col-sm-6 mx-auto">
+              <label for="exampleInputEmail1" class="form-label"><i class="bi bi-person-fill mx-2"></i>Username</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+            </div>
+            <div class="mb-3 col-sm-6 mx-auto">
+              <label for="exampleInputPassword1" class="form-label"><i class="bi bi-key mx-2"></i>Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <!-- <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <div class="mb-3 col-sm-6 mx-auto">
+                <button type="submit" class="btn btn-primary">SignIn</button>
+            </div>
+            <div class="mb-3 col-sm-6 mx-auto">
+                <a href="{% url 'register' %}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Don't have an account, Register</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
