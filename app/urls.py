@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import show_index, show_todays_revision, show_all_revisions, update_revision, delete_revision, handle_login, handle_register, handle_logout
+from django.conf import settings
+from django.conf.urls import static
 
 urlpatterns = [
     path("", show_index, name="homepage"),
@@ -10,4 +12,4 @@ urlpatterns = [
     path('login/', handle_login, name='login'),
     path('register/', handle_register, name='register'),
     path('logout/', handle_logout, name='logout'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
